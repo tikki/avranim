@@ -12,11 +12,6 @@ naming:
 	B1 B2 B3
 	C1 C2 C3
 */
-union Pb {
-	uint8_t pb;
-	char : 7;
-	bool b3:1;
-};
 union Pd {
 	uint8_t pd;
 	struct {

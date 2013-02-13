@@ -34,7 +34,6 @@ AVRGPP = $(AVRGPP_PATH) -Wall -Os -DF_CPU=$(AVRGCC_CLOCK) -mmcu=$(AVRGCC_MCU) $(
 # project file
 
 TARGET = main
-OBJ = $(SRC:.c=.o) $(CXXSRC:.cpp=.o)
 FRAMES = frames
 
 # make targets
@@ -74,23 +73,6 @@ $(TARGET).hex: $(TARGET).elf
 # If you have an EEPROM section, you must also create a hex file for the
 # EEPROM and add it to the "flash" target.
 
-# IMAGES = $(wildcard *.bmp)
-# IMAGE_TARGETS = $(IMAGES:.bmp=.o)
-# %.o: %.bmp
-# 	# $(eval MONO := $(patsubst %.bmp,%.mono,$<))
-# 	# $(PYTHON_PATH) bmp2bin.py 3 < $< > $(MONO)
-# 	# $(AVROBJCOPY_PATH) -I binary $(MONO) -B avr4 -O elf32-avr $@
-# 	# rm $(MONO)
-# 	$(eval CFILE := $(patsubst %.bmp,%.c,$<))
-# 	# $(eval SYMBOL := _frame_`/bin/echo -n $(basename $<) | $(PYTHON_PATH) clean.py`)
-# 	echo "#include <avr/pgmspace.h>" > $(CFILE)
-# 	# echo "extern uint8_t $(IMAGES_SYMBOL)[];" >> $(IMAGES_HEADER)
-# 	$(PYTHON_PATH) bmp2bin.py 3 < $< | $(PYTHON_PATH) bin2carray.py $(IMAGES_SYMBOL) PROGMEM >> $(CFILE)
-# 	$(AVRGCC) -c $(CFILE) -o $@
-# 	rm $(CFILE)
-#
-# images: $(IMAGE_TARGETS)
-
 $(FRAMES).o: $(FRAMES).cpp $(FRAMES).h
 	$(AVRGCC) -c $< -o $@
 
@@ -109,4 +91,4 @@ disasm:	$(TARGET).elf
 	$(AVROBJDUMP_PATH) -d $(TARGET).elf
 
 cpp:
-	$(AVRGCC) -E $(TARGET).c
+	$(AVRGCC) -E $(TARGET).cpp
