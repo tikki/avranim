@@ -74,4 +74,4 @@ So to make it easier for people trying to do the same in the future, here's a st
 ##TODO##
 
 - add infinite playback to `Animation::play` when setting `repeats` to 0.
-
+- use timer interrupts to calibrate the factor needed for 1 Hz to actually last 1 second.
